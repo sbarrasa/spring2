@@ -5,39 +5,11 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
-import org.springframework.beans.BeanUtils;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.lang.Nullable;
-
 import com.blink.springboot.config.Formats;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import com.vladmihalcea.hibernate.type.json.JsonStringType;
 
-@Entity
-@Table(name = "customers")
-@TypeDefs({
-    @TypeDef(name = "json", typeClass = JsonStringType.class),
-    @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-})
 public class Customer implements Serializable {
 	private static final long serialVersionUID = 666L;
 
@@ -45,8 +17,6 @@ public class Customer implements Serializable {
 	public Customer() {}
 	
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonView(Views.Order.class)
 	private Long id;
 
@@ -54,22 +24,16 @@ public class Customer implements Serializable {
 	private String names;
 
 	@JsonView(Views.Order.class)
-	@Column(name = "lastnames")
 	private String lastNames;
 	
 	@JsonView(Views.Order.class)
-	@Enumerated(EnumType.STRING)
 	private Sex sex;
 	
 	@JsonFormat(pattern=Formats.DATE_VIEW)
 	private LocalDate birthday;
 
-	@Type(type = "jsonb")
-    @Column(columnDefinition = "json") 
 	private List<Specs> specs;
 
-	@ElementCollection(fetch = FetchType.LAZY)
-	@CollectionTable(name="childs")
 	private List<Customer> childs;
 	 	
 	public Long getId() {
