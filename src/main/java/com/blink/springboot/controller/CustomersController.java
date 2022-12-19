@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 
-import com.blink.springboot.Application;
 import com.blink.springboot.dao.CustomerRedisRepository;
 import com.blink.springboot.entities.Customer;
 import com.blink.springboot.entities.CustomerRedis;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
 @RequestMapping("/customers")
