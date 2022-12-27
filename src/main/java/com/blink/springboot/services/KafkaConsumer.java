@@ -17,11 +17,11 @@ private Logger logger = LoggerFactory.getLogger(getClass());
   @KafkaHandler
   public void listener(Customer customer) {
     logger.info("Customer received {} ", customer);
- }
+  }
   
   
   @KafkaHandler
   public void listener(String message) {
     logger.info("Message received {} ", message);
- }
+  }
 }
