@@ -10,7 +10,7 @@ import com.blink.springboot.entities.Customer;
 
 
 @Component
-@KafkaListener(topics = "${kafka.topic.name}")
+@KafkaListener(autoStartup = "${kafka.enabled}",  topics = "${kafka.topic.name}")
 public class KafkaConsumer {
 private Logger logger = LoggerFactory.getLogger(getClass());
 
