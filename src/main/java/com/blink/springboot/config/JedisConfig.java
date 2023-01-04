@@ -20,7 +20,7 @@ public class JedisConfig {
 	@Value("${spring.redis.port}") Integer port;
     @Value("${spring.redis.host}") String host;
 	@Bean
-    JedisConnectionFactory jedisConnectionFactory() {
+    public JedisConnectionFactory jedisConnectionFactory() {
 
 	  logger.info("Redis .database:{} .host:{} .port:{} ",database, host, port);
 

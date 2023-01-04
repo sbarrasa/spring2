@@ -25,7 +25,6 @@ public class CustomersController {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
-	
 	@PostMapping("/")
 	public CustomerRedis saveToRedis(@RequestBody Customer customer) {
 		CustomerRedis customerRedis = new CustomerRedis(customer);
